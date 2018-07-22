@@ -23,6 +23,7 @@ class HomeController extends Controller {
     //例如：用户模块/用户ID
     const fileLocation2='app/public/user/222';
     fileUtils.createFolderByDirname(fileLocation2);
+
     const stream = await this.ctx.getFileStream();
     const filename = encodeURIComponent(stream.fields.name) + path.extname(stream.filename).toLowerCase();
     const user_input_name=stream.fields.name;
@@ -38,6 +39,7 @@ class HomeController extends Controller {
     await pump(stream, writeStream);
     // this.ctx.redirect('/public/' + filename1);
     const fileUrl=fileLocation2+'/' +serviceFileName;
+
     this.ctx.body = {success:'success',fileUrl:fileUrl};
   }
 
